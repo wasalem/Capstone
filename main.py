@@ -6,6 +6,7 @@ def next_card():
     global counter
     global current_image
     global to_learn
+    window.after_cancel(counter)
     to_learn = choice(data_list)
     title = "Deutsch"
     original_word = to_learn["Deutsch"]
@@ -64,7 +65,7 @@ except FileNotFoundError:
 else:
     data_list = data.to_dict(orient="records")
 
-
+counter = window.after(4000, func=flip_card)
 next_card()
 
 right_image = PhotoImage(file="images/right.png")
